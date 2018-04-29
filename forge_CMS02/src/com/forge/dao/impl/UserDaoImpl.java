@@ -54,12 +54,15 @@ public class UserDaoImpl extends jdbcUtil implements UserDao {
 
 	@Override
 	public Forge_Users login(String userName, String Password) {
+	
 		String sql = "select * from forge_users  where loginName=? and password=?";
 		Object []param = {userName,Password};
 		Forge_Users user = null;
 		try {
 			rs = myExcuteQuery(sql, param);
+			//System.out.println("============================="+rs.next());
 			user = ResultSetUtil.findById(rs, Forge_Users.class);
+			//System.out.println("============================="+user);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

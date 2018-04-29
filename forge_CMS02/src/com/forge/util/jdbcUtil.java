@@ -72,12 +72,15 @@ public class jdbcUtil {
 		
 		//05.提取公共的查询方法
 		public  static ResultSet myExcuteQuery(String sql,Object...param) throws ClassNotFoundException, SQLException{
+			
+		
 			if(getConnection()){
 				pstmt = conn.prepareStatement(sql);
 				for(int i =0; i<param.length;i++){
 					pstmt.setObject(i+1, param[i]);
 				}
 				rs = pstmt.executeQuery();
+				
 			}
 			return rs;
 		}

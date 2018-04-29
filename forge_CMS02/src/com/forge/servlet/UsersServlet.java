@@ -32,25 +32,26 @@ public class UsersServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		String name = req.getParameter("loginName");
 		String password = req.getParameter("password");
-		
-		
 		UserService service = new UserServiceImpl();
-		
-		
 		Forge_Users user = null;
-		
-		
 		user = service.login(name, password);
-		
-		
-	//	System.out.println(name);
-	//	System.out.println(password);
+		System.out.println(user);
+		System.out.println(name);
+		System.out.println(password);
 		if(user==null){
 			logger.info("登陆失败！");
+			resp.sendRedirect("production/login.jsp");
 		}else if(user!=null){
-			//Cookie con = new Cookie("userName",name);
-			//Cookie cop = new Cookie("pwd",password);
-			logger.info("登陆成功！");
+			System.out.println(user.getLoginName());
+			System.out.println(user.getPassword());
+			if(user.getLoginName().equals("222")&& user.getPassword().equals("123")){
+				logger.info("登陆成功！");
+				req.getSession().setAttribute("admin", user);
+				resp.sendRedirect("production/index.jsp");
+			}else{
+				resp.sendRedirect("production/login.jsp");
+			}
+			
 		}
 			
 	}
