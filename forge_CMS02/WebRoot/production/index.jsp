@@ -91,7 +91,7 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.jsp">User List</a></li>
+                      <li><a href="/forge_CMS02/UsersServlet?method=findAll">Users List</a></li>
                       <li><a href="tables_dynamic.jsp">Table Dynamic</a></li>
                     </ul>
                   </li>

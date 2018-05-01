@@ -9,6 +9,7 @@ import com.forge.bean.Forge_News;
 import com.forge.dao.NewsDao;
 import com.forge.dao.impl.NewsDaoImpl;
 import com.forge.service.NewsService;
+import com.forge.util.PageInfo;
 
 public class NewsServiceImpl implements NewsService {
 
@@ -47,6 +48,18 @@ public class NewsServiceImpl implements NewsService {
 	public Forge_News findById(Serializable id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public PageInfo<Forge_News> findAlls(int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

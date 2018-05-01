@@ -1,7 +1,10 @@
 package com.forge.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+
+import net.spy.memcached.MemcachedClient;
 
 import org.apache.log4j.Logger;
 
@@ -9,6 +12,7 @@ import com.forge.bean.Forge_Users;
 import com.forge.dao.UserDao;
 import com.forge.dao.impl.UserDaoImpl;
 import com.forge.service.UserService;
+import com.forge.util.MemcachedUtil;
 
 
 
@@ -18,6 +22,7 @@ public class UserServiceImpl implements UserService {
 	
 	UserDao dao = new UserDaoImpl();  //实例化UserDao对象
 	Logger logger = Logger.getLogger(UserServiceImpl.class);  //实例化日志对象，用于记录
+	MemcachedClient client = MemcachedUtil.getInstance();
 
 	/**
 	 * 注册新用户
@@ -45,7 +50,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Forge_Users> findAll() {
-		return null;
+		List<Forge_Users> users = new ArrayList();
+		users = dao.findAll();
+		return users;
 	}
 
 	@Override

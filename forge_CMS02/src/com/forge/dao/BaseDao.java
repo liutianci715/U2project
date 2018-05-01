@@ -11,4 +11,10 @@ public interface BaseDao<T> {
 	int update(T t);
 	List<T> findAll();
 	T findById (Serializable id);
+	
+	//获取新闻总数
+	int getTotalCount();
+	
+	//实现分页显示信息
+	List<T> findAlls(int pageNum,int pageSize);
 }

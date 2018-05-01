@@ -49,4 +49,16 @@ public class NewsDaoImpl extends jdbcUtil implements NewsDao {
 		return null;
 	}
 
+	@Override
+	public List<Forge_News> findAlls(int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

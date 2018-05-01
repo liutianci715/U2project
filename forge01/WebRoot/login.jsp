@@ -266,7 +266,7 @@
                         <div class="col-md-6">
                             <div class="registered-customers">
                                 <h4 class="text-uppercase mb-20"><strong>REGISTERED CUSTOMERS</strong></h4>
-                                <form action="UsersServlet" id="login" method="post">
+                                <form action="UsersServlet?method=login" id="login" method="post">
                                     <div class="login-account p-30 box-shadow">
                                         <p>If you have an account with us, Please log in.</p>
                                         <input type="text" placeholder="LoginName" name="loginName">
@@ -291,7 +291,7 @@
                                 <div class="section-title text-uppercase mb-40">
                                     <h4>NEW CUSTOMERS</h4>
                                 </div>
-                                <form action="#" id="register" method="post">
+                                <form action="forge01/usersServlet?method=add" id="register" method="post">
                                     <div class="login-account p-30 box-shadow">
                                         <div class="row">
                                             <div class="col-sm-6">

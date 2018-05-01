@@ -16,14 +16,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/vendors/nprogress/nprogress.css" rel="stylesheet">
     
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="${pageContext.request.contextPath}/production/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -315,45 +315,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <form class="form-horizontal form-label-left" novalidate>
-
+	
+                    <form class="form-horizontal form-label-left" action="/forge_CMS02/UsersServlet?method=update" method="post" novalidate>
+					
                       </p>
                       <span class="section">请修改用户详情</span>
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">用户编号 <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">用户编号 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input readonly value="12" id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input readonly="readonly"  name="id" value="${requestScope.user.userId}" id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"    type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">用户登录名 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="loginName" type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                          <input name="loginName" value="${requestScope.user.loginName}" type="text" id="email"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">用户联系电话 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="phone" type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
+                          <input name="phone" value="${requestScope.user.phone}" type="text" id="email2"   class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                        <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">用户地址 <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="email">用户地址 <span class="required" ></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="address" type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                          <input name="address" value= "${requestScope.user.address}"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">用户邮箱 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="email" type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                          <input name="email" type="url"value="${requestScope.user.email}" id="website"  placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       

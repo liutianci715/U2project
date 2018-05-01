@@ -2,12 +2,14 @@ package com.forge.dao.impl;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.forge.bean.Forge_Users;
 import com.forge.dao.UserDao;
 import com.forge.util.ResultSetUtil;
 import com.forge.util.jdbcUtil;
+
 
 
 
@@ -44,7 +46,20 @@ public class UserDaoImpl extends jdbcUtil implements UserDao {
 
 	@Override
 	public List<Forge_Users> findAll() {
-		return null;
+		String sql = "select * from forge_users";
+		Forge_Users user = null;
+		List<Forge_Users> users = new ArrayList();
+		try {
+			rs = myExcuteQuery(sql);
+			users = ResultSetUtil.findAll(rs, Forge_Users.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeConnections();
+		}
+		return users;
 	}
 
 	@Override

@@ -47,8 +47,8 @@
                                 <ul class="header-top-style text-capitalize mr-25">
                                     <li><a href="#"><span class="mr-10">My Account</span><i class="fa fa-angle-down"></i></a>
                                         <ul class="ul-style my-account box-shadow white-bg">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
+                                            <li><a href="login.jsp">Login</a></li>
+                                            <li><a href="my-account.jsp">My Account</a></li>
                                             <li><a href="/forge_CMS/index.jsp">forge_CMS</a></li>
                                             
                                         </ul>

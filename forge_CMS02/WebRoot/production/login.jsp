@@ -30,7 +30,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action= "/forge_CMS02/UsersServlet" method="post">
+            <form action= "/forge_CMS02/UsersServlet?method=login" method="post">
               <h1>Login Form</h1>
               <div>
                 <input type="text" class="form-control" name = "loginName" placeholder="Username" required="" />
