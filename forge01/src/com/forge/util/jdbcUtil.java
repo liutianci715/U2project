@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 
 public class jdbcUtil {
 
@@ -16,7 +21,7 @@ public class jdbcUtil {
 	 //02.建立连接
 	   public static boolean getConnection() throws ClassNotFoundException,
 		SQLException {
-		try {
+		/*try {
 			Class.forName(ConfigManager.getInstance().getValue("jdbc.driver"));
 			//建立连接
 			conn = DriverManager.getConnection(ConfigManager.getInstance().getValue("jdbc.url"),
@@ -25,8 +30,20 @@ public class jdbcUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
-		return true;
+		}*/
+		try {
+			//初始化上下文对象Tomcat容器
+			Context con = new InitialContext();
+			//通过数据源中的name属性获取指定的数据源
+			DataSource ds = (DataSource) con.lookup("java:comp/env/jdbc/forge");
+		    //从连接池中获取connection pool
+			conn = ds.getConnection();
+			return true;
+		} catch (NamingException e) {
+			e.printStackTrace();
+			return false;
+		}  
+		
    }
 	   
 	 //03.提取所有的释放资源代码

@@ -64,12 +64,13 @@ public class UsersServlet extends HttpServlet {
 		String id = req.getParameter("id");
 		System.out.println("delete id=================>"+id);
 		service.delete(id);
-		try {
+		findAlls(req,resp);
+		/*try {
 			resp.sendRedirect("production/tables_dynamic(1).jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+*/
 	}
 
 	private void findById(HttpServletRequest req, HttpServletResponse resp) {
@@ -112,11 +113,13 @@ public class UsersServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		Forge_Users user = new Forge_Users(id,loginName,phone,email,address);
 		service.update(user);
-		try {
+		
+		findAlls(req,resp);
+		/*try {
 			resp.sendRedirect("production/tables_dynamic(1).jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**

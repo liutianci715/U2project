@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 
 public class jdbcUtil {
 
@@ -16,7 +21,7 @@ public class jdbcUtil {
 	 //02.建立连接
 	   public static boolean getConnection() throws ClassNotFoundException,
 		SQLException {
-		try {
+		/*try {
 			Class.forName(ConfigManager.getInstance().getValue("jdbc.driver"));
 			//建立连接
 			conn = DriverManager.getConnection(ConfigManager.getInstance().getValue("jdbc.url"),
@@ -26,7 +31,16 @@ public class jdbcUtil {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		return true;*/
+			try {
+				Context con = new InitialContext();
+				DataSource ds = (DataSource) con.lookup("java:comp/env/jdbc/forge");
+			    conn = ds.getConnection();
+				return true;
+			} catch (NamingException e) {
+				e.printStackTrace();
+				return false;
+			}  
    }
 	   
 	 //03.提取所有的释放资源代码
