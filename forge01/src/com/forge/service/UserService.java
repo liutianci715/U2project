@@ -13,4 +13,6 @@ public interface UserService extends BaseService<Forge_Users> {
 	 * @return  登录的用户
 	 */
 	Forge_Users login(String userName,String Password);
+	Forge_Users findByName(String loginName);
+
 }

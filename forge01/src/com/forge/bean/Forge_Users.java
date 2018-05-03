@@ -26,6 +26,14 @@ public class Forge_Users  implements Serializable{
 	this. email=email;
 	this. address=address;
 }
+	public Forge_Users(String loginName, String password, String address,
+			String phone, String email) {
+		this. loginName=loginName;
+		this. password=password;
+		this. phone=phone;
+		this. email=email;
+		this. address=address;
+	}
 	public void setUserId(int userId){
 	this.userId=userId;
 	}

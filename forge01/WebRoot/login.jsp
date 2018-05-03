@@ -26,11 +26,7 @@
     <link rel="stylesheet" href="css/slide-unlock.css">
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>  
     <script type="text/javascript" src="js/jquery.slideunlock.js"></script>   
-	<script type="text/javascript" src="js/add.js">
-	
-	
-	
-	</script>
+	<script type="text/javascript" src="js/add.js"></script>
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -291,16 +287,19 @@
                                 <div class="section-title text-uppercase mb-40">
                                     <h4>NEW CUSTOMERS</h4>
                                 </div>
-                                <form action="forge01/usersServlet?method=add" id="register" method="post">
+                                <form action="UsersServlet?method=add" id="register" method="post">
                                     <div class="login-account p-30 box-shadow">
                                         <div class="row">
+                                          <!--   <div class="col-sm-6">
+                                                <input type="text" placeholder="UserName" name="userName">
+                                            </div> -->
                                             <div class="col-sm-6">
-                                                <input type="text" placeholder="First Name" name="firstName">
+                                            <!--  --> 
+                                                <input type="text" placeholder="LoginName" id="LoginName" name="LoginName" onblur="validate();" required>
+                                                <div id="result"></div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" placeholder="last Name" name="lastName">
-                                            </div>
-                                            <div class="col-sm-6">
+                                           
+                                          <!--   <div class="col-sm-6">
                                                 <select class="custom-select" name="country">
                                                     <option value="defalt">Country</option>
                                                     <option value="c-1">Australia</option>
@@ -326,7 +325,7 @@
                                                     <option value="c-3">Boston</option>
                                                     <option value="c-4">Cambridge</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-6">
                                                 <input type="text" placeholder="Detailed Address..." name="address">
                                             </div>
@@ -623,6 +622,58 @@
     <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript" src="js/formValidation.js"></script>
 
+	<!--  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> -->
+   <script type="text/javascript">
+    
+    /**
+                     昵称失去焦点时的事件
+    */
+     function validate(){
+     	alert("进入了该方法");
+       //获取用户输入的昵称
+       var  LoginName=$("[name='LoginName']").val();
+     	
+       //创建ajax核心对象
+       var  xhr=null;
+       
+       if(window.XMLHttpRequest){//高版本的浏览器
+           xhr=new   XMLHttpRequest();
+       }else{ //低版本的浏览器
+          xhr=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       
+       //在 readyState发生变化的时候都会触发这个个属性（回调函数）
+       xhr.onreadystatechange=function(){
+       alert(xhr.status);
+          if (xhr.readyState==4&&xhr.status==200) { //响应成功
+			 //获取后台数据之后处理
+		
+			var data= xhr.responseText;
+			if (data.match("true")) {  //证明用户名存在
+				$("#result").html("<span style='color:red'>用户名已经存在</span>")
+			}else{
+				$("#result").html("<span style='color:green'>可以使用</span>")
+			}
+		  }
+       }
+       
+       //初始化组件 xhr.open("GET", "validateServlet?userName="+userName);
+       xhr.open("POST", "/forge01/UsersServlet?method=name");
+       //如果是post请求 务必设置请求头
+       xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+       
+       //发送数据
+       xhr.send("LoginName="+LoginName); 
+       
+        
+        
+        
+     
+     
+     }
+                                  
+                                            </script>
+                                            
 </body>
 
 </html>

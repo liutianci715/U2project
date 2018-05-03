@@ -12,4 +12,5 @@ public interface UserDao extends BaseDao<Forge_Users>{
 	 * @return  登录的用户
 	 */
 	Forge_Users login(String userName,String Password);
+	Forge_Users findByName(String loginName);
 }

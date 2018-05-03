@@ -67,6 +67,13 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public Forge_Users findByName(String loginName) {
+		Forge_Users user=null;
+		user=dao.findByName(loginName);
+		return user;
+	}
+
 	
 	
 	

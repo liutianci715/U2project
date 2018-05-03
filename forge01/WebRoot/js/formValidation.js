@@ -4,11 +4,25 @@
 $(function(){
     $("#register").validate({
         rules:{
-            firstName:{
+        	/*LoginName:{
                 required:true,
                 minlength:1,
-                maxlength:2
-            },
+                maxlength:2,
+                remote: {        //验证用户是否存在validate自带的
+           		  type: "post",  //提交方式
+          		  url: "/forge01/UsersServlet?method=name",//@WebServlet("/UserServlet")
+          		  data: {//传输数据到后台  @WebServlet("/UserServlet")
+            		  username: function() {//
+            			  
+              		  return $("#LoginName").val();//获取到表单的值发送过去取对比数据库jdbc
+              		  
+             		  }
+            		  },    
+         	       } 
+        		  },*/
+         
+
+    
             lastName:{
                 required:true
             },
@@ -45,11 +59,12 @@ $(function(){
             }
         },
         messages:{
-            firstName:{
+        	/*LoginName:{
                 required: "Please enter your first name",
                 minlength: "The length of the first name cannot be less than 1",
-                maxlength: "The length of the first name cannot be greater than 2"
-            },
+                maxlength: "The length of the first name cannot be greater than 2",
+                remote:"LoginName is already exits"
+            },*/
             lastName:{
                 required: "Please enter your last name"
             },

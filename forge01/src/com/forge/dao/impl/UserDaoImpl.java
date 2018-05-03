@@ -21,8 +21,9 @@ public class UserDaoImpl extends jdbcUtil implements UserDao {
 	 */
 	@Override
 	public int add(Forge_Users t) {
-		String sql = "INSERT INTO forge_users(loginName,`password`) VALUES (?,?)";
-		Object []param = {t.getLoginName(),t.getPassword()};
+		String sql = "INSERT INTO forge_users(loginName,`password`,phone,email,address) VALUES (?,?,?,?,?)";
+		System.out.println("t.getLoginName()==============>"+t.getLoginName());
+		Object []param = {t.getLoginName(),t.getPassword(),t.getPhone(),t.getEmail(),t.getAddress()};
 		int rowNum = 0;
 		try {
 			rowNum = myExcuteUpdate(sql, param);
@@ -71,6 +72,22 @@ public class UserDaoImpl extends jdbcUtil implements UserDao {
 	public Forge_Users login(String userName, String Password) {
 		String sql = "select * from forge_users  where loginName=? and password=?";
 		Object []param = {userName,Password};
+		Forge_Users user = null;
+		try {
+			rs = myExcuteQuery(sql, param);
+			user = ResultSetUtil.findById(rs, Forge_Users.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	@Override
+	public Forge_Users findByName(String loginName) {
+		String sql = "select * from forge_users  where loginName=? ";
+		Object []param = {loginName};
 		Forge_Users user = null;
 		try {
 			rs = myExcuteQuery(sql, param);

@@ -1,6 +1,7 @@
 package com.forge.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,13 +47,48 @@ public class UsersServlet extends HttpServlet {
 			case "add" :
 				addUser(req,resp);
 				break;
+			case "name": //判断用户名是否已被占用
+				validateName(req,resp);
+				break;
+			
 		}
 		
 			
 	}
 
-	private void addUser(HttpServletRequest req, HttpServletResponse resp) {
+	private void validateName(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("================进入了validateName======================");
+		String name = req.getParameter("LoginName");
+		System.out.println("validateName==============="+name);
+		Forge_Users user =null;
+		user=service.findByName(name);
 		
+		boolean flag = false;
+		if(user!=null){
+			flag = true;  //证明数据库中已存在
+		}
+		try {
+			PrintWriter writer = resp.getWriter();
+			writer.print(flag);
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void addUser(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("================进入了addUser======================");
+	//	String userName = req.getParameter("userName");
+		String LoginName = req.getParameter("LoginName");
+		System.out.println(LoginName);
+		String address = req.getParameter("address");
+		String phone = req.getParameter("phone");
+		String email = req.getParameter("email");
+		String pwd = req.getParameter("pwd");
+		Forge_Users user = new Forge_Users(LoginName,pwd,address,phone,email);
+		System.out.println("=============="+user.getLoginName());
+		service.add(user);
+		System.out.println("addUser===========>"+user.toString());
 	}
 
 	private void findAlls(HttpServletRequest req, HttpServletResponse resp) {
