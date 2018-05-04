@@ -137,7 +137,8 @@ public class UsersServlet extends HttpServlet {
 			//Cookie con = new Cookie("userName",name);
 			//Cookie cop = new Cookie("pwd",password);
 			logger.info("登陆成功！");
-			
+		
+
 			try {
 				resp.sendRedirect("index.jsp");
 			} catch (IOException e) {

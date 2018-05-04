@@ -295,7 +295,7 @@
                                             </div> -->
                                             <div class="col-sm-6">
                                             <!--  --> 
-                                                <input type="text" placeholder="LoginName" id="LoginName" name="LoginName" onblur="validate();" required>
+                                                <input type="text" placeholder="LoginName" id="LoginName" name="LoginName"  required>  <!-- onblur="validate();" -->
                                                 <div id="result"></div>
                                             </div>
                                            
@@ -624,11 +624,31 @@
 
 	<!--  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> -->
    <script type="text/javascript">
+   	$("[name='LoginName']").blur(function(){
+   		var loginName = $("[name='LoginName']").val();
+   		$.ajax({
+   		url:"/forge01/UsersServlet?method=name",
+   		type:"POST",
+   		data:{"LoginName":loginName},
+   		dataType:"text",
+   		success:function(data){
+   			if (data.match("true")) {  //证明用户名存在
+				$("#result").html("<span style='color:red'>用户名已经存在</span>");
+			}else{
+				//	$("#result").html("<span style='color:green'>可以使用</span>")
+				$("#result").html("");
+			}
+   		}
+   	});
+   	});
+   
+   
+   
     
     /**
                      昵称失去焦点时的事件
     */
-     function validate(){
+   /*   function validate(){
      	alert("进入了该方法");
        //获取用户输入的昵称
        var  LoginName=$("[name='LoginName']").val();
@@ -665,14 +685,9 @@
        //发送数据
        xhr.send("LoginName="+LoginName); 
        
-        
-        
-        
-     
-     
-     }
+         } */
                                   
-                                            </script>
+ </script>
                                             
 </body>
 

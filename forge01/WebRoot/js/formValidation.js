@@ -8,13 +8,13 @@ $(function(){
                 required:true,
                 minlength:1,
                 maxlength:2,
-                remote: {        //验证用户是否存在validate自带的
-           		  type: "post",  //提交方式
+                remote: {        //楠岃瘉鐢ㄦ埛鏄惁瀛樺湪validate鑷甫鐨�
+           		  type: "post",  //鎻愪氦鏂瑰紡
           		  url: "/forge01/UsersServlet?method=name",//@WebServlet("/UserServlet")
-          		  data: {//传输数据到后台  @WebServlet("/UserServlet")
+          		  data: {//浼犺緭鏁版嵁鍒板悗鍙� @WebServlet("/UserServlet")
             		  username: function() {//
             			  
-              		  return $("#LoginName").val();//获取到表单的值发送过去取对比数据库jdbc
+              		  return $("#LoginName").val();//鑾峰彇鍒拌〃鍗曠殑鍊煎彂閫佽繃鍘诲彇瀵规瘮鏁版嵁搴搄dbc
               		  
              		  }
             		  },    
@@ -40,7 +40,7 @@ $(function(){
             },
             phone:{
                 required:true,
-                checkPhone:true//checkPhone需要自己书写
+                checkPhone:true//checkPhone闇�鑷繁涔﹀啓
             },
             email:{
                 required:true,
@@ -82,7 +82,7 @@ $(function(){
             },
             phone:{
                 required: "Please enter the phone number",
-                checkPhone: "Incorrect mobile number format"//checkPhone需要自己书写
+                checkPhone: "Incorrect mobile number format"//checkPhone闇�鑷繁涔﹀啓
             },
             email:{
                 required: "please input your email",
@@ -104,11 +104,11 @@ $(function(){
             $(e).valid();
         }
     });
-    /*增加手机验证规则*/
+    /*澧炲姞鎵嬫満楠岃瘉瑙勫垯*/
     jQuery.validator.addMethod("checkPhone",function(value,element){
         var  phone=/^1[3|4|5|8][0-9]\d{4,8}$/;
         return this.optional(element)||(phone.test(value));
-    },"手机号码格式不正确")
+    },
     $("#login").validate({
         rules:{
             loginName:{

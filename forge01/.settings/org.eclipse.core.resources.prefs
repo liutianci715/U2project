@@ -1,3 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/js/formValidation.js=UTF-8
 encoding//WebRoot/login.jsp=UTF-8
+encoding//src/com/forge/bean/Forge_Product.java=UTF-8
+encoding//src/com/forge/bean/GenerateEntityClass.java=UTF-8
+encoding//src/com/forge/service/impl/UserServiceImpl.java=UTF-8
+encoding//src/com/forge/servlet/UsersServlet.java=UTF-8

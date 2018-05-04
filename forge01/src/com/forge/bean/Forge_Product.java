@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
-*Created by 刘天赐on2018-04-21
-*@Descrptionforge_product实体类
+*Created by 鍒樺ぉ璧恛n2018-04-21
+*@Descrptionforge_product瀹炰綋绫�
 */ 
 
 
 public class Forge_Product  implements Serializable{
-	private int id;
+	private String id;
 	private String name;
 	private String description;
 	private double price;
@@ -22,7 +22,7 @@ public class Forge_Product  implements Serializable{
 	private int isDelete;
 	private int score;
 	public Forge_Product(){}
-	public Forge_Product(int id,String name,String description,double price,int stock,int categoryLevel1,int categoryLevel2,String categoryLevel3,String fileName,int isDelete,int score){
+	public Forge_Product(String id,String name,String description,double price,int stock,int categoryLevel1,int categoryLevel2,String categoryLevel3,String fileName,int isDelete,int score){
 	super();
 	this. id=id;
 	this. name=name;
@@ -36,10 +36,10 @@ public class Forge_Product  implements Serializable{
 	this. isDelete=isDelete;
 	this. score=score;
 }
-	public void setId(int id){
+	public void setId(String id){
 	this.id=id;
 	}
-	public int getId(){
+	public String getId(){
 		return id;
 	}
 	public void setName(String name){
