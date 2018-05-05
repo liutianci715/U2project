@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.RepaintManager;
 
+import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.service.Product_CategoryService;
 import com.forge.service.impl.Product_CategoryServiceImpl;
@@ -33,13 +35,64 @@ public class CategoryServlet extends HttpServlet {
 		case "findAll":
 			findType1(req, resp, type); //��ѯһ���˵�
 			break;
-		case "2":
-			findType2(req, resp, type);  //��ѯ�����˵�
+		case "findByt3":  //根据三级菜单的id获取下级商品
+			findByt3(req, resp);  //��ѯ�����˵�
+			break;
+		case "page":  //根据三级菜单的id获取下级商品
+			pageInfo(req, resp);  //��ѯ�����˵�
 			break;
 		default:
 			break;
 		}
 		
+	}
+
+	private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("========================进入了pageInfo=================");
+
+		String id = req.getParameter("id");
+//		System.out.println("===============id:"+id);
+//		List<Forge_Product> products = (List<Forge_Product>) req.getSession().getAttribute("products");
+//		Forge_Product product = null;
+//		for (int i = 0; i < products.size(); i++) {
+//			if(id == products.get(i).getId()){
+//				product = products.get(i);
+//				System.out.println("========================="+products.get(i).getFileName());
+//			}	
+//		}
+//		req.getSession().setAttribute("product", product);
+//		try {
+		req.getSession().setAttribute("pageid", id);
+			try {
+				resp.sendRedirect("page.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+	}
+
+	private void findByt3(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("========================进入了findByt3=================");
+			String id = req.getParameter("id");
+			List<Forge_Product> products = service.findByt3(id);
+			for(int i = 0;i<products.size();i++){
+				System.out.println(products.get(i).getFileName());
+			}
+		req.getSession().setAttribute("products", products);
+			req.setAttribute("id", id);
+		
+			try {
+				req.getRequestDispatcher("my-all.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	}
 
 	private void findType2(HttpServletRequest req, HttpServletResponse resp,

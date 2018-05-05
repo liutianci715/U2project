@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.dao.Product_CategoryDao;
 import com.forge.util.ResultSetUtil;
@@ -98,6 +99,22 @@ public class Product_CategoryDaoImpl extends jdbcUtil implements Product_Categor
 			e.printStackTrace();
 		}
 		return cate;
+	}
+
+	@Override
+	public List<Forge_Product> findByt3(Serializable id) {
+		String sql = "SELECT * FROM `forge_product` WHERE categoryLevel3=?";
+		Object []param = {id};
+		List<Forge_Product> products = new ArrayList();
+		try {
+			rs = myExcuteQuery(sql, param);
+			products = ResultSetUtil.findAll(rs, Forge_Product.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return products;
 	}
 
 	

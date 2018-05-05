@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -219,22 +219,24 @@
 
 <div class="Xcontent">
 	<ul class="Xcontent01">
-
-		<div class="Xcontent06"><img src="images/shangpinxiangqing/X1.png"></div>
-		<ol class="Xcontent08">
+			<c:forEach items="${sessionScope.products}" var="b">
+			<c:if test="${b.id==pageid }">
+			<div class="Xcontent06"><img src="images/${b.fileName}"></div>
+		
+		<!-- <ol class="Xcontent08">
 			<div class="Xcontent07"><img src="images/shangpinxiangqing/X1.png"></div>
 			<div class="Xcontent09"><img src="images/shangpinxiangqing/X7.png"></div>
 			<div class="Xcontent10"><img src="images/shangpinxiangqing/X8.png"></div>
 			<div class="Xcontent11"><img src="images/shangpinxiangqing/X9.png"></div>
 			<div class="Xcontent12"><img src="images/shangpinxiangqing/X10.png"></div>
-		</ol>
+		</ol> -->
 		<ol class="Xcontent13 clearfix">
 			<div class="Xcontent14 clearfix"><a href="#"><p>赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </p></a></div>
 			<div class="Xcontent15 clearfix red fl" style="margin-top:2px">新品上架</div>
 			<div class="Xcontent16 clearfix"><p style="margin:0">美妆护肤放肆购，你值得拥有！更多惊喜</p></div>
 			<div class="Xcontent17">
 				<p class="Xcontent18">售价</p>
-				<p class="Xcontent19">￥<span>69.00</span></p>
+				<p class="Xcontent19">￥<span>${b.price}</span></p>
 				<div class="Xcontent20">
 					<p class="Xcontent21">促销</p>
 					<img src="images/shangpinxiangqing/X12.png">
@@ -268,6 +270,9 @@
 
 	</ul>
 </div>
+	</c:if>
+		
+		</c:forEach>
 <div class="center" style="background:#fff">
 	<div class="tabox">
 		<div class="hd">

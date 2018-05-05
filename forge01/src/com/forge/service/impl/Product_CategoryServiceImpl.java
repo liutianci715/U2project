@@ -71,6 +71,12 @@ public class Product_CategoryServiceImpl implements Product_CategoryService {
 		return type3;
 	}
 
+	@Override
+	public List<Forge_Product> findByt3(Serializable id) {
+		List<Forge_Product> products = dao.findByt3(id);
+		return products;
+	}
+
 
 
 }

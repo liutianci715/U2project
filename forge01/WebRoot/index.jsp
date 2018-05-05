@@ -166,7 +166,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>

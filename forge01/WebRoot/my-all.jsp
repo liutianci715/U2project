@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -226,61 +226,24 @@
 				</ul>
 			</div>
 			<div>
-				<div class="pc-nav-title"><h3>手机数码</h3></div>
+		<c:forEach items="${sessionScope.type3}" var="a">
+				<c:if test="${a.id==id}">
+					<div class="pc-nav-title"><h3>${a.name}</h3></div>
 				<div class="pc-nav-digit clearfix">
 					<ul>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
+						<c:forEach items="${sessionScope.products}" var="b">
+							<li>
+								<div class="digit1"><a href="CategoryServlet?method=page&id=${b.id}"><img src="images/${b.fileName}" width="100%"></a></div>
+								<div class="digit2"><a href="CategoryServlet?method=page&id=${b.id}">${b.name}</a></div>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
+				</c:if>
+		</c:forEach> 
 			</div>
-			<div>
+		<!-- 最外层forEach -->	
+			<!-- <div>
 				<div class="pc-nav-title"><h3>摄影</h3></div>
 				<div class="pc-nav-digit clearfix">
 					<ul>
@@ -362,7 +325,7 @@
 
 	</div>
 </div>
-
+ -->
 
 <div style="height:100px"></div>
 
