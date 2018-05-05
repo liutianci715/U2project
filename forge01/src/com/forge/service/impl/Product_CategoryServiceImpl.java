@@ -11,6 +11,7 @@ import com.forge.dao.Product_CategoryDao;
 import com.forge.dao.impl.Product_CategoryDaoImpl;
 import com.forge.service.ProductService;
 import com.forge.service.Product_CategoryService;
+import com.googlecode.jtype.Types;
 
 public class Product_CategoryServiceImpl implements Product_CategoryService {
 
@@ -36,8 +37,7 @@ public class Product_CategoryServiceImpl implements Product_CategoryService {
 
 	@Override
 	public List<Forge_Product_Category> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
@@ -51,6 +51,24 @@ public class Product_CategoryServiceImpl implements Product_CategoryService {
 		List<Forge_Product_Category> cate = new ArrayList();
 		cate = dao.findByType(id);
 		return cate;
+	}
+
+	@Override
+	public List<Forge_Product_Category> findType2(Serializable parentId) {
+		List<Forge_Product_Category> type2 = new ArrayList();
+		type2 = dao.findType2(parentId);
+		return type2;
+	}
+
+	@Override
+	public List<Forge_Product_Category> findType3() {
+		System.out.println("===================进入了findType3================");
+		List<Forge_Product_Category> type3 = new ArrayList();
+		type3 = dao.findType3();
+		for(int i=0;i<type3.size();i++){
+			System.out.println(type3.get(i).getName());
+		}
+		return type3;
 	}
 
 

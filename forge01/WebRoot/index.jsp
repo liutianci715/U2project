@@ -3,6 +3,7 @@
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -153,197 +154,107 @@
 						<i class="list-icon-1"></i>
 						<a href="" target="_blank">${cate.name}</a>
 						<span></span>
-						<%-- <tr>
-							<td>${cate.name }</td>
-						</tr> --%>
 					</li>
 				</c:forEach>
 		</ul>
 				<!-- 下拉详细列表具体分类 -->
 				<div class="yMenuListCon">
 					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						<div class="yMenuLCinList" id="name1">
+						<c:forEach items="${sessionScope.type21}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>
+							
+								
 							</p>
+						</c:forEach>  <!-- name1的foreach -->
 						</div>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList" id="name2">
+						<c:forEach items="${sessionScope.type22}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>								
 							</p>
-						</div>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
+						</c:forEach>  <!-- name2的foreach -->
 						</div>
 					</div>
 
 					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						<div class="yMenuLCinList" id="name3">
+						<c:forEach items="${sessionScope.type23}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>								
 							</p>
+						</c:forEach>  <!-- name3的foreach -->	
 						</div>
 					</div>
 
 					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						<div class="yMenuLCinList" id="name4">
+						<c:forEach items="${sessionScope.type24}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>								
 							</p>
+						</c:forEach>  <!-- name4的foreach -->	
 						</div>
 					</div>
 
 					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						<div class="yMenuLCinList" id="name5">
+						<c:forEach items="${sessionScope.type25}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>								
 							</p>
+						</c:forEach>  <!-- name5的foreach -->
 						</div>
 					</div>
 
 					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+						<div class="yMenuLCinList" id="name6">
+						<c:forEach items="${sessionScope.type26}" var="type2">
+							<h3><a href="" class="yListName">${type2.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.type3}" var="type33">
+									<c:if test="${type2.id==type33.parentId}">
+										<a href="">${type33.name}</a>
+									</c:if>
+										
+								</c:forEach>								
 							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
+						</c:forEach>  <!-- name6的foreach -->
 						</div>
 					</div>
 
@@ -1302,19 +1213,12 @@
 		 $.ajax({
               url:"CategoryServlet",
               type:"POST",
-              data:{"method":"1"},
-              success:function(data){
-               if (data.match("true")) {
-				  alert("加入购物车成功");
-			   }else{
-			      alert("加入购物车失败");
-			   }
-              
-              }
+              data:{"method":"findAll"}
        
        });
 	}
 </script>
+					
 <script type="text/javascript">
     //hover 触发两个事件，鼠标移上去和移走
     //mousehover 只触发移上去事件

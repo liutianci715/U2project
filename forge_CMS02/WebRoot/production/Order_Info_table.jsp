@@ -360,7 +360,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">总金额 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="cost" type="url"value="${requestScope.order.cost}" id="website"  placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                          <input name="cost" type="url" value="${requestScope.order.cost}" id="website"  placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       

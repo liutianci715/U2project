@@ -49,11 +49,15 @@ public class OrdersServlet extends HttpServlet {
 	}
 
 	private void deleteById(HttpServletRequest req, HttpServletResponse resp) {
-		
+		System.out.println("================OrdersServlet进入了deleteById======================");
+		String id = req.getParameter("id");
+		System.out.println("delete id=================>"+id);
+		service.delete(id);
+		findAlls(req,resp);
 	}
 
 	private void findById(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("================OrdersServlet进入了findById======================");
+		System.out.println("================findById进入了findById======================");
 		Forge_Order order = null;
 		String id = req.getParameter("id");
 		System.out.println("id=======================>"+id);
@@ -65,9 +69,10 @@ public class OrdersServlet extends HttpServlet {
 				req.getRequestDispatcher("production/Order_Info_table.jsp").forward(req, resp);
 			} catch (ServletException e) {
 				e.printStackTrace();
-			} catch (IOException e) {	
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		
 		
 	}
 
@@ -84,13 +89,15 @@ public class OrdersServlet extends HttpServlet {
 	}
 
 	private void updateOrder(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("================进入了updateUser======================");
+		System.out.println("================进入了updateOrder======================");
 		int id = Integer.valueOf(req.getParameter("id")) ;
-		String loginName = req.getParameter("loginName");
-		String phone = req.getParameter("phone");
-		String address = req.getParameter("address");
-		String email = req.getParameter("email");
-		Forge_Order order = new Forge_Order();
+		String userAddress = req.getParameter("userAddress");
+		String createTime = req.getParameter("createTime");
+		String cost = req.getParameter("cost");
+		String status = req.getParameter("status");
+		String type = req.getParameter("type");
+		String serialNumber = req.getParameter("serialNumber");
+		Forge_Order order = new Forge_Order(id,userAddress,createTime,cost,status,type,serialNumber);
 		service.update(order);
 		
 		findAlls(req,resp);

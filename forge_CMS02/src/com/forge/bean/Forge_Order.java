@@ -1,7 +1,10 @@
 package com.forge.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
 *Created by 刘天赐on2018-04-21
@@ -32,6 +35,21 @@ public class Forge_Order  implements Serializable{
 	this. type=type;
 	this. serialNumber=serialNumber;
 }
+	public Forge_Order(int id, String userAddress, String createTime,
+			String cost, String status, String type, String serialNumber) {
+		this. id=id;
+		this. userAddress=userAddress;
+		try {
+			this. createTime=(Date) (new SimpleDateFormat("yyyy-MM-dd").parse(createTime));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		};
+		this. cost=Double.valueOf(cost);
+		this. type=Integer.valueOf(type);
+
+		this. serialNumber=serialNumber;
+
+	}
 	public void setId(int id){
 	this.id=id;
 	}
