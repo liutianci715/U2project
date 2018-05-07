@@ -1,29 +1,41 @@
 package com.forge.bean;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Cart {
-	//±ØÐëÓÐÒ»¸ö¼¯ºÏ±£´æËùÓÐµÄÉÌÆ·
-	private Map<String,CartItem> map = new LinkedHashMap<>();
-	//ËùÓÐÉÌÆ·µÄ×Ü¼Û
+public class Cart implements Serializable {
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Æ·
+	private static Map<String,CartItem> map = new LinkedHashMap<>();
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ü¼ï¿½
 	private double price;
 	
-	//ÐÂÔöÉÌÆ·
-	public void addProduct(Forge_Product product){
-		//µÚÒ»´Î¹ºÎïÏî  ¿Ï¶¨ Îª null
+	private int count;
+	
+	
+
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	public void addProduct(Forge_Product product,int num){
+		//ï¿½ï¿½Ò»ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ï¶ï¿½ Îª null
+		System.out.println("============è¿›å…¥äº†cartItem ==============");
+
 		CartItem  cartItem = map.get(product.getId());
-		if(cartItem == null){  // Ö¤Ã÷¹ºÎï³µÖÐÊ²Ã´¶¼Ã»ÓÐ
-			cartItem = new CartItem(); //ÊµÀý»¯¹ºÎïÏî
-			//½«ÓÃ»§´«µÝÀ´µÄÉÌÆ··Å½ø¹ºÎïÏîÖÐ
-			cartItem.setProduct(product);	
-			// °Ñ¹ºÎïÏî·Å½ø¹ºÎï³µ
+		if(cartItem == null){  // Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï³µï¿½ï¿½Ê²Ã´ï¿½ï¿½Ã»ï¿½ï¿½
+			System.out.println("============è¿›å…¥äº†cartItem == null==============");
+			cartItem = new CartItem(); //Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			System.out.println("===================cartItem"+product);
+			cartItem.setProduct(product);
+			cartItem.setNum(num);
+			// ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï³µ
 			map.put(product.getId(), cartItem);
 		}else{
-			//Èç¹û´æÔÚÉÌÆ·  ¸ÃÉÌÆ·ÊýÁ¿¼Ó1
-			cartItem.setNum(cartItem.getNum()+1);
+			System.out.println("============è¿›å…¥äº†cartItem != null==============");   
+			
+			cartItem.setNum(cartItem.getNum()+num);
 		}
+		
 	}
 
 	public Map<String, CartItem> getMap() {
@@ -36,10 +48,10 @@ public class Cart {
 	
 	/**
 	 * 
-	 * @return ËùÓÐÉÌÆ·×Ü¼Û
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ü¼ï¿½
 	 */
 	public double getPrice() {
-		int totalPrice = 0; //±£´æ×Ü¼Û
+		int totalPrice = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½
 		for(Entry<String,CartItem> product : map.entrySet()){
 			CartItem cartItem = product.getValue();
 			totalPrice += cartItem.getPrice();
@@ -50,6 +62,15 @@ public class Cart {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public void setCount(int count) {
+		System.out.println("map.size():"+map.size());
+		this.count = map.size();
+	}
+	public int getCount() {
+		return count;
+	}
+
 	
 
 }

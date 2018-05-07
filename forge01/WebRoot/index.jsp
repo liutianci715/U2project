@@ -138,7 +138,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="my-car.html" target="_blank">我的购物车</a>
+			<a href="buyServlet?method=findCart" target="_blank">我的购物车</a>
 			<em>10</em>
 		</div>
 	</div>

@@ -1,11 +1,14 @@
 package com.forge.bean;
+
+import java.io.Serializable;
+
 /**
- * ¹ºÎïÏî£¨¹ºÎï³µÖÐµÄÄÚÈÝ£©
+ * ï¿½ï¿½ï¿½ï¿½ï¿½î£¨ï¿½ï¿½ï¿½ï³µï¿½Ðµï¿½ï¿½ï¿½ï¿½Ý£ï¿½
  */
-public class CartItem {
-	private Forge_Product product;  //ÉÌÆ·
-	private int num;  //ÊýÁ¿
-	private double price;  //ÉÌÆ·µÄ×Ü¼Û
+public class CartItem implements Serializable{
+	private Forge_Product product;  //ï¿½ï¿½Æ·
+	private int num;  //ï¿½ï¿½ï¿½ï¿½
+	private double price;  //ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ü¼ï¿½
 	public Forge_Product getProduct() {
 		return product;
 	}
@@ -19,7 +22,7 @@ public class CartItem {
 		this.num = num;
 	}
 	
-	//ÉÌÆ·µÄ×Ü½ð¶î
+	//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
 	public double getPrice() {
 		return product.getPrice()*num;
 	}

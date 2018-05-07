@@ -183,7 +183,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="buyServlet?method=findCart">我的购物车</a>
 			<em>10</em>
 		</div>
 	</div>
@@ -256,16 +256,15 @@
 			<div class="Xcontent30">
 				<p class="Xcontent31">数量</p>
 				<div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
-				<form>
-					<input class="input" name="num" value="1"></form>
+				<form id="count" method="post">
+					<input class="input" name="num" value="1">
 				<div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>
-
+				</form>
 			</div>
 			<div class="Xcontent34"><a href="#">立即购买</a></div>
-			<div class="Xcontent35"><a href="buyServlet?method=add">加入购物车</a></div>
-
+			<div class="Xcontent35"><a href="javascript:void(0);" onclick="jump(${b.id});">加入购物车</a></div>	
 		</ol>
-
+	
 
 
 	</ul>
@@ -1067,6 +1066,13 @@
         $(this).removeClass("hover");
         $(this).find(".nav a").removeClass("hover");
     })
+</script>
+
+<script>
+	function jump(id)  {
+	document.getElementById("count").action="buyServlet?method=add&id="+id;
+	document.getElementById("count").submit();
+	}
 </script>
 </body>
 </html>

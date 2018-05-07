@@ -8,6 +8,7 @@ import com.forge.bean.Forge_Product;
 import com.forge.dao.ProductDao;
 import com.forge.dao.impl.ProductDaoImpl;
 import com.forge.service.ProductService;
+import com.google.gson.Gson;
 
 
 public class ProductServiceImpl implements ProductService {
@@ -40,16 +41,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void addCart(String id, Cart cart) {
-		//´ÓÊý¾Ý¿âÖÐ»ñÈ¡ÉÌÆ·
+	public void addCart(String id, Cart cart,int num) {
+		//ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð»ï¿½È¡ï¿½ï¿½Æ·
 		Forge_Product product = dao.findById(id);
-		//½«ÉÌÆ··Å½ø¹ºÎï³µ
-		cart.addProduct(product);
+		System.out.println("product++++++++++++"+product);
+		System.out.println("num++++++++++++++"+num);
+		System.out.println("cart++++++++++++++"+cart);
+		//ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Å½ï¿½ï¿½
+		cart.addProduct(product,num);
+	
+		
 	}
 
 	@Override
 	public void del(String id, Cart cart) {
 		cart.getMap().remove(id);
 	}
+
 
 }
