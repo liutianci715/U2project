@@ -28,3 +28,6 @@ ${type2.id==type33.parentId}
 1.一直初始化可以将变量改成静态变量
 2.sqlException如果不是sql语句的问题就有可能是查询时反射出现问题，查看实体类字段是否都是正确的
 3.notSerializableException  一些实体类没有实现实现Serializable接口
+
+2018-05-07 23:11
+下订单的初步实现，并未提交订单

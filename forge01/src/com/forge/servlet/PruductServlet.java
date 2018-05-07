@@ -65,15 +65,43 @@ public class PruductServlet extends HttpServlet {
 				clearCart(req, resp);
 				break;
 			case "toPay":
-				toPay(req, resp);
+				ifUserLogin(req, resp);
 				break;
 			}
 		}
 	}
 
-	private void toPay(HttpServletRequest req, HttpServletResponse resp) {
+	private void ifUserLogin(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("方法进来的ifUserLogin");
+		//先判断用户是否登录，如果没有登录进入购物车先登录，登录则进入查询页面
+		Forge_Users user =  (Forge_Users) req.getSession().getAttribute("user");
+		if(null==user){//用户没登录
+			System.out.println("用户没有登录去结账");
+			try {
+				resp.sendRedirect("login.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{//用户已登录
+			System.out.println("用户已登录去结账");
+		Forge_Users forgeUser=	(Forge_Users) req.getSession().getAttribute("user");
+		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getLoginName());
+		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getAddress());
+		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getPhone());
+		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getLoginName());
+			try {
+				String loginName= (String) req.getSession().getAttribute("loginName");
+				System.out.println(loginName);
+				resp.sendRedirect("my-add.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
+
 
 	private void clearCart(HttpServletRequest req, HttpServletResponse resp) {
 		req.getSession().removeAttribute("cart");
