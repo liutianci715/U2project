@@ -13,14 +13,19 @@ import javax.swing.RepaintManager;
 
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
+import com.forge.bean.Forge_Users;
+import com.forge.bean.Forge_Users_Tracks;
+import com.forge.service.Forge_Users_TracksService;
 import com.forge.service.Product_CategoryService;
+import com.forge.service.impl.Forge_Users_TracksServiceImpl;
 import com.forge.service.impl.Product_CategoryServiceImpl;
 
 @WebServlet("/CategoryServlet")
 public class CategoryServlet extends HttpServlet {
 
 	Product_CategoryService service = new	Product_CategoryServiceImpl();
-
+	//浏览记录相关实例
+	Forge_Users_TracksService tservices = new  Forge_Users_TracksServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -41,16 +46,30 @@ public class CategoryServlet extends HttpServlet {
 		case "page":  //根据三级菜单的id获取下级商品
 			pageInfo(req, resp);  //��ѯ�����˵�
 			break;
-		default:
+		case "track":   //查询商品浏览记录
+			queryTrack(req, resp);  
 			break;
 		}
 		
+	}
+	
+	//查询商品浏览记录
+	private void queryTrack(HttpServletRequest req, HttpServletResponse resp) {
+		//获取用户ID
+		String userId = req.getParameter("userId");
+		List<Forge_Product> products = tservices.findAll(userId);
+		req.getSession().setAttribute("userTrack", products);
+		try {
+			resp.sendRedirect("my-track.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("========================进入了pageInfo=================");
 
-		String id = req.getParameter("id");
+		String id = req.getParameter("id");  //获取商品的id
 //		System.out.println("===============id:"+id);
 //		List<Forge_Product> products = (List<Forge_Product>) req.getSession().getAttribute("products");
 //		Forge_Product product = null;
@@ -63,10 +82,13 @@ public class CategoryServlet extends HttpServlet {
 //		req.getSession().setAttribute("product", product);
 //		try {
 		req.getSession().setAttribute("pageid", id);
+		//将商品添加到用户的浏览记录中
+		addTrack(id,req,resp);
+		
 			try {
-				resp.sendRedirect("page.jsp");
+				//进入商品展示页面
+				resp.sendRedirect("page.jsp"); 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 //		} catch (IOException e) {
@@ -74,6 +96,39 @@ public class CategoryServlet extends HttpServlet {
 //			e.printStackTrace();
 //		}
 //		
+	}
+
+	//添加用户的浏览记录 
+	private void addTrack(String id, HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("========================进入了addTrack=================");
+
+		//获取用户  如果用户登陆了加入浏览记录  如果用户没登录不记录(参考 淘宝网)
+		Forge_Users user = (Forge_Users) req.getSession().getAttribute("user");
+		if(user!= null){
+			//从数据库取出用户的浏览记录
+			int userId =user.getUserId();
+		    List<Forge_Product> tracks = tservices.findAll(userId);
+		    System.out.println(tracks);
+		    if(tracks.size()!=0){
+		    	for(int i = 0;i<tracks.size();i++){
+					if(id.equals(tracks.get(i).getId())){
+						String productId = tracks.get(i).getId();
+						tservices.update(userId,productId);
+					}else{
+						//添加浏览记录 	
+						tservices.addTrack(user.getUserId(),id);
+						return;
+					}
+					System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
+				}
+		    }else{
+		    	tservices.addTrack(user.getUserId(),id);
+				return;
+		    }
+			
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		}
 	}
 
 	private void findByt3(HttpServletRequest req, HttpServletResponse resp) {

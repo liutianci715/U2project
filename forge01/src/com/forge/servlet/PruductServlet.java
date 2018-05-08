@@ -91,8 +91,6 @@ public class PruductServlet extends HttpServlet {
 		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getPhone());
 		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getLoginName());
 			try {
-				String loginName= (String) req.getSession().getAttribute("loginName");
-				System.out.println(loginName);
 				resp.sendRedirect("my-add.jsp");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

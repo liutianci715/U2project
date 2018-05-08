@@ -10,6 +10,15 @@ import java.sql.Date;
 
 
 public class Forge_Product  implements Serializable{
+	@Override
+	public String toString() {
+		return "Forge_Product [id=" + id + ", name=" + name + ", description="
+				+ description + ", price=" + price + ", stock=" + stock
+				+ ", categoryLevel1=" + categoryLevel1 + ", categoryLevel2="
+				+ categoryLevel2 + ", categoryLevel3=" + categoryLevel3
+				+ ", fileName=" + fileName + ", isDelete=" + isDelete
+				+ ", score=" + score + "]";
+	}
 	private String id;
 	private String name;
 	private String description;
