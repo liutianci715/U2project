@@ -33,6 +33,7 @@ public class PruductServlet extends HttpServlet {
 	//ʵ��service�����
 	ProductService service = new ProductServiceImpl();
 	Forge_CartService fcService = new Forge_CartServiceImpl();
+	MemcachedClient client = MemcachedUtil.getInstance();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -172,8 +173,9 @@ public class PruductServlet extends HttpServlet {
 			}
 		}else{//用户不为空，用户已经登录  先从缓存中取购物车，如果缓存中没有，去数据库取
 			System.out.println("++++++++++++findCart:user不为空=================");
-			MemcachedClient client = MemcachedUtil.getInstance();
+			
 			Cart cart = (Cart) client.get("cart");
+			
 			
 			if(cart!=null){//如果缓存中有购物车
 				System.out.println("++++++++++++findCart:Memcachedcart不为空=================");
@@ -182,8 +184,9 @@ public class PruductServlet extends HttpServlet {
 				//从数据库中取出购物车
 				System.out.println("++++++++++++findCart:Memcachedcart为空=================");
 				 Cart userCart = getUserCart(user.getUserId());
-				req.getSession().setAttribute("cart", cart);
-
+				 if(userCart!=null){
+						req.getSession().setAttribute("cart", userCart);
+				 }
 			}
 			try {
 				resp.sendRedirect("my-car.jsp");
@@ -266,6 +269,7 @@ public class PruductServlet extends HttpServlet {
 				service.addCart(productId, cart, Integer.valueOf(num));
 				String json1 = gson.toJson(cart);
 				cookie.setValue(json1);
+				resp.addCookie(cookie);
 			}
 			 
 			try {
@@ -275,7 +279,13 @@ public class PruductServlet extends HttpServlet {
 			}
 		}else{ //用户不为空即用户已经登录了
 			System.out.println("==========进入了user不等于空==============");
-			  //从数据库取出用户的购物车
+		//	MemcachedClient client = MemcachedUtil.getInstance();
+			Cart mcart =  (Cart) client.get("cart");
+			System.out.println("88888888888888:"+productId);
+			System.out.println("88888888888888:"+mcart);
+			System.out.println("88888888888888:"+Integer.valueOf(num));
+			service.addCart(productId, mcart, Integer.valueOf(num));
+			client.set("cart",1000,mcart);
 			  try {
 					resp.sendRedirect("page.jsp");
 				} catch (IOException e) {

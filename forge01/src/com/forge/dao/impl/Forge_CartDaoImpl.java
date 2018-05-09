@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.forge.bean.CartItem;
 import com.forge.bean.Forge_Cart;
 import com.forge.dao.Forge_CartDao;
 import com.forge.util.ResultSetUtil;
@@ -46,7 +47,7 @@ public class Forge_CartDaoImpl extends jdbcUtil implements Forge_CartDao {
 	public List<Forge_Cart> findByUserId(Serializable id) {
 		String sql = "select * from forge_cart where userId = ?";
 		Object []param = {id};
-		List<Forge_Cart> cartList = new ArrayList();
+		List<Forge_Cart> cartList = null;
 		try {
 			rs = myExcuteQuery(sql, param);
 			cartList = ResultSetUtil.findAll(rs, Forge_Cart.class);
@@ -57,6 +58,44 @@ public class Forge_CartDaoImpl extends jdbcUtil implements Forge_CartDao {
 			e.printStackTrace();
 		}
 		return cartList;
+	}
+
+	@Override
+	public void addProduct(Serializable userId, CartItem mitem) {
+		String sql = "insert into forge_cart value(?,?,?,?) ";
+		Object []param = {userId,mitem.getProduct().getId(),mitem.getNum(),mitem.getPrice()};
+		try {
+			myExcuteUpdate(sql, param);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateProduct(Serializable userId, CartItem uitem) {
+		String sql = "update forge_cart set productNum=?,price=? where userId=?and productId=?";
+		Object []param = {uitem.getNum(),uitem.getPrice(),userId,uitem.getProduct().getId()};
+		try {
+			myExcuteUpdate(sql, param);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delDbData() {
+		String sql ="delete from forge_cart";
+		try {
+			myExcuteUpdate(sql);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
