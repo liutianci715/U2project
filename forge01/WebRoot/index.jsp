@@ -3,7 +3,7 @@
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -133,6 +133,54 @@
 				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
 				<button class="button" onclick="search('key');return false;">搜索</button>
 			</form>
+			<!-- 搜索下拉框 -->
+			<div id="context1"  style="background-color:rgba(220,220,220,0.9);border:1.5px red solid;width:461px;position: absolute;top:67px;z-index:5;display:none"></div>
+			
+			<script type="text/javascript">
+		        $("#key").keyup(function() {  
+		            var key = $(this).val();
+		            if ("" == key) {  
+		                    $("#context1").css("display","none");
+		                    return;
+		            }  
+		             //由于浏览器的缓存机制 所以我们每次传入一个时间
+        			var time=new Date().getTime();
+			        $.ajax({
+			            type:"POST",
+			            //新建一个名为findBooksAjaxServlet的servlet
+			            url:"CategoryServlet?method=books",
+			            data:{name:key,time:time},
+			            success:function(data){
+			                //拼接html
+			                var res=data.split(",");
+			                var html="";
+			                for(var i=0;i<res.length;i++){
+			                    //每一个div还有鼠标移出、移入点击事件
+			                    html+="<div onclick='setSearch_onclick(this)' onmouseout='changeBackColor_out(this)' onmouseover='changeBackColor_over(this)'>"+res[i]+"</div>";
+			                }
+			                $("#context1").html(html);
+			                //显示为块级元素
+			                $("#context1").css("display","block");
+			            }
+			        });
+				});
+				//鼠标移动到内容上
+			    function changeBackColor_over(div){
+			        $(div).css("background-color","#CCCCCC");
+			    }
+			    //鼠标离开内容
+			    function changeBackColor_out(div){
+			        $(div).css("background-color","");
+			    }
+			    //将点击的内容放到搜索框
+			    function setSearch_onclick(div){
+			        $("#key").val(div.innerText);
+			        $("#context1").css("display","none");
+			    }
+			</script>
+			
+			
+			
 			<div class="words-text clearfix">
 				<a href="#" class="red">1元秒爆</a>
 				<a href="#">低至五折</a>

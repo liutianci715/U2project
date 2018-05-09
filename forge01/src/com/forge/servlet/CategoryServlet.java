@@ -2,6 +2,7 @@ package com.forge.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,8 +17,10 @@ import com.forge.bean.Forge_Product_Category;
 import com.forge.bean.Forge_Users;
 import com.forge.bean.Forge_Users_Tracks;
 import com.forge.service.Forge_Users_TracksService;
+import com.forge.service.ProductService;
 import com.forge.service.Product_CategoryService;
 import com.forge.service.impl.Forge_Users_TracksServiceImpl;
+import com.forge.service.impl.ProductServiceImpl;
 import com.forge.service.impl.Product_CategoryServiceImpl;
 
 @WebServlet("/CategoryServlet")
@@ -35,6 +38,7 @@ public class CategoryServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		resp.setCharacterEncoding("utf-8");
 		String type = req.getParameter("method");
 		switch (type) {
 		case "findAll":
@@ -49,9 +53,46 @@ public class CategoryServlet extends HttpServlet {
 		case "track":   //查询商品浏览记录
 			queryTrack(req, resp);  
 			break;
+		case "books":
+			findBooks(req,resp);
+			break;
 		}
 		
 	}
+	
+	
+	
+	/**
+	 * 模糊查询
+	 */
+	private void findBooks(HttpServletRequest req, HttpServletResponse resp) {
+		//获取搜索框输入的内容
+        String name=req.getParameter("name");
+        /*try {
+			name=new String(name.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}*/
+        //向server层调用相应的业务
+        ProductService booksServer=new ProductServiceImpl();
+        List<String> res=booksServer.findBooksAjax(name);
+        String str="";
+        for (int i = 0; i < res.size(); i++) {
+        	if(i>0){
+                str+=","+res.get(i);
+            }else{
+                str+=res.get(i);
+            }
+		}
+        System.out.println("333"+str);
+        //返回结果
+        try {
+			resp.getWriter().write(str);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
+	
 	
 	//查询商品浏览记录
 	private void queryTrack(HttpServletRequest req, HttpServletResponse resp) {

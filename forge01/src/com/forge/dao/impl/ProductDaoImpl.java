@@ -57,4 +57,19 @@ public class ProductDaoImpl extends jdbcUtil implements ProductDao {
 		return product;
 	}
 
+	@Override
+	public List<Forge_Product> findBooksAjax() {
+		String sql="SELECT * FROM forge_product ";//WHERE  `name` LIKE '%' ? '%' 
+		List<Forge_Product> list=null;
+		try {
+			rs=myExcuteQuery(sql);
+			list=ResultSetUtil.findAll(rs, Forge_Product.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }
