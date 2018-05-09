@@ -23,6 +23,7 @@ import com.forge.bean.CartItem;
 import com.forge.bean.Forge_Cart;
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
+import com.forge.bean.region;
 import com.forge.service.Forge_CartService;
 import com.forge.service.ProductService;
 import com.forge.service.UserService;
@@ -69,11 +70,34 @@ public class UsersServlet extends HttpServlet {
 			case "exit": //用户退出登录
 				exit(req,resp); 
 				break;
+			case "address"://订单三级联动
+				myAdd(req, resp);
+				break;
 		}
 		
 			
 	}
 
+	/**
+	 * 订单三级联动
+	 */
+		private void myAdd(HttpServletRequest req, HttpServletResponse resp) {
+			String parentId = req.getParameter("parentId");
+			if (parentId==null || parentId=="") {
+				parentId="0";//如果传的父结点为空，则默认赋值为中国的父结点，也就是每一级查询所有省份
+			}
+			List<region> list = service.findAddress(parentId);
+			String json="";
+			Gson gson=new Gson();
+			json=gson.toJson(list);
+			resp.setCharacterEncoding("utf-8");
+			try {
+				resp.getWriter().print(json);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	//用户退出登录，将缓存中的购物车存入数据库中
 	private void exit(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("================进入了exit======================");

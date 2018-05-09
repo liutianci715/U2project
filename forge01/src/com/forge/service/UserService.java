@@ -1,6 +1,9 @@
 package com.forge.service;
 
+import java.util.List;
+
 import com.forge.bean.Forge_Users;
+import com.forge.bean.region;
 
 
 
@@ -14,5 +17,6 @@ public interface UserService extends BaseService<Forge_Users> {
 	 */
 	Forge_Users login(String userName,String Password);
 	Forge_Users findByName(String loginName);
+	List<region> findAddress(String parentId);
 
 }

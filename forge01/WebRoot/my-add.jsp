@@ -650,7 +650,7 @@
 			<button class="btn-pst2" type="submit">保存</button>
 		</div>
 	</div>
-	<script type="text/javascript" src="js/json-minified.js"></script>
+	<script type="text/javascript" src="js/json/json-minified.js"></script>
 	<script type="text/javascript">
 		function onSelectChange(obj, toSelId) {
     		//将select对象传入，传入下一级选项的id字符串，调用下面的方法
@@ -658,7 +658,7 @@
 		}
 		function setSelect(fromSelVal, toSelId) {
     			$.ajax({
-        			url : "forgeServlet?method=address",
+        			url : "UsersServlet?method=address",
         			cache : false,/*cache设为false将不缓存此页面 */
         			data : "parentId=" + fromSelVal,
         			success : function(data) {
