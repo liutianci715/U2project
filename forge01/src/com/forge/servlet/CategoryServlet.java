@@ -150,21 +150,29 @@ public class CategoryServlet extends HttpServlet {
 			int userId =user.getUserId();
 		    List<Forge_Product> tracks = tservices.findAll(userId);
 		    System.out.println(tracks);
-		    if(tracks.size()!=0){
-		    	for(int i = 0;i<tracks.size();i++){
-					if(id.equals(tracks.get(i).getId())){
-						String productId = tracks.get(i).getId();
-						tservices.update(userId,productId);
+		    int count =0;
+		    if(!tracks.isEmpty()){
+		    	for(int i = 0;i<tracks.size();i++){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+					if(id.equals(tracks.get(i).getId())||id==tracks.get(i).getId()){
+						System.out.println("88888888888888888888浏览记录id相同88888888888888");
+						//String productId = tracks.get(i).getId();
+						count=count+1;
+						
+						
+					}
+					
+		    	}
+					if(count>0){
+						tservices.update(userId,id);
 					}else{
 						//添加浏览记录 	
 						tservices.addTrack(user.getUserId(),id);
-						return;
+						
 					}
 					System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
-				}
+				
 		    }else{
 		    	tservices.addTrack(user.getUserId(),id);
-				return;
 		    }
 			
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

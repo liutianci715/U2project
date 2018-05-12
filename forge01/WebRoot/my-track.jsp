@@ -244,10 +244,41 @@
 							<li>
 								<div class="digit1"><a href="CategoryServlet?method=page&id=${b.id}"><img src="images/${b.fileName}" width="100%"></a></div>
 								<div class="digit2"><a href="CategoryServlet?method=page&id=${b.id}">${b.name}</a></div>
+								<div id="time" name="time" value="${b.id}"></div>
 							</li>
 						</c:forEach>
 					</ul>
 				</div>
+				
+				<!-- 显示浏览时间 -->
+				<!-- <script type="text/javascript">
+					$(function(){
+					 alert("进入了ajax的time");
+					 var id=$("#time").val();
+					 alert(id);
+					 $.ajax({
+		              	url:"TackServlet",
+		             	type:"POST",
+		              	data:{"method":"findTime","time":id},
+		              	succession:function(data){
+		              		$("#time").append("<h6>"+data+"</h6>");
+		              	}		       
+		      		 });	 -->
+					
+					
+					});				
+				</script>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<%-- </c:if> --%>
 	<%-- 	</c:forEach>  --%>
 			</div>

@@ -105,5 +105,19 @@ public class Forge_Users_TracksDaoImpl extends jdbcUtil implements
 				
 	}
 
+	@Override
+	public String findTime(Serializable userId, Serializable productId) {
+		String sql = "select viewTime from forge_user_tracks WHERE userId=? AND productId=?";
+		Object []param = {userId,productId};
+		String time = null;
+		try {
+			rs = myExcuteQuery(sql, param);
+			 time = ResultSetUtil.findById(rs, String.class);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return time;	
+	}
+
 	
 }

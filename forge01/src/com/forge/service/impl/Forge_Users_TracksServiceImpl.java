@@ -63,5 +63,11 @@ public class Forge_Users_TracksServiceImpl implements Forge_Users_TracksService 
 		dao.update(userId,productId);
 	}
 
+	@Override
+	public String findTime(Serializable userId, Serializable productId) {
+		String time = dao.findTime(userId, productId);
+		return time;
+	}
+
 
 }

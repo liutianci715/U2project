@@ -14,5 +14,6 @@ public interface Forge_Users_TracksService extends BaseService<Forge_Users_Track
 	List<Forge_Product> findAll(Serializable userId);
 
 	void update(Serializable userId, String productId);
+	String findTime(Serializable userId, Serializable productId);
 
 }

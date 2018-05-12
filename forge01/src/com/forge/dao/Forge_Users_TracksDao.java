@@ -14,4 +14,5 @@ public interface Forge_Users_TracksDao extends BaseDao<Forge_Users_Tracks> {
 	List<Forge_Product> findAll(Serializable userId);
 
 	void update(Serializable userId, String productId);
+	String findTime(Serializable userId, Serializable productId);
 }
