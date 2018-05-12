@@ -15,4 +15,6 @@ public interface Forge_CartDao extends BaseDao<Forge_Cart> {
 	void updateProduct(Serializable userId, CartItem uitem);
 
 	void delDbData();
+
+	void clear(int userId);
 }

@@ -119,5 +119,20 @@ public class Forge_Users_TracksDaoImpl extends jdbcUtil implements
 		return time;	
 	}
 
+	@Override
+	public List<Forge_Users_Tracks> findByUserId(int userId) {
+		String sql = "select * from forge_user_tracks where userId=?";
+		Object []param = {userId};
+		List<Forge_Users_Tracks> tracks = null;
+		try {
+			rs =myExcuteQuery(sql, param);
+			tracks = ResultSetUtil.findAll(rs,Forge_Users_Tracks.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tracks;
+	}
 	
 }

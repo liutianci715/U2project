@@ -103,7 +103,27 @@ public class PruductServlet extends HttpServlet {
 
 
 	private void clearCart(HttpServletRequest req, HttpServletResponse resp) {
-		req.getSession().removeAttribute("cart");
+		Forge_Users user =  (Forge_Users) req.getSession().getAttribute("user");
+		//判断用户是否登录
+		if(user!=null){
+			System.out.println("============用户不为空==========");
+			//清除缓存中的用户购物车的购物项
+			Cart cart = (Cart) client.get("cart");
+			cart.getMap().clear();
+		}else{ //用户没有登录
+			//清除cookie中的购物车
+			 Cookie []cookies =req.getCookies();
+			    for(int i=0;i<cookies.length;i++){
+			    	if(cookies[i].getName().equals("cart")){
+			    		Cookie newCookie = new Cookie("cart",null);
+			    		newCookie.setMaxAge(0);
+			    		resp.addCookie(newCookie);
+			    	}
+			    }
+		}
+		//清除sssion中的购物车中的购物项
+		Cart cart =	(Cart) req.getSession().getAttribute("cart");
+		cart.getMap().clear();		
 		try {
 			resp.sendRedirect("my-car.jsp");
 		} catch (IOException e) {
@@ -115,15 +135,44 @@ public class PruductServlet extends HttpServlet {
 		System.out.println("方法进来的delCart");
 		String id = req.getParameter("id");
 		System.out.println("id================="+id);
-		Cart cart = (Cart) req.getSession().getAttribute("cart");
-		System.out.println("方法进来的delCart:"+cart);
-		service.del(id, cart);
+		Forge_Users user =  (Forge_Users) req.getSession().getAttribute("user");
+		if(user==null){ //用户为空 清除cookie中 购物车的指定购物项 
+			Cookie[] cookies = req.getCookies();
+			Cookie cookie=null;
+			for (int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("cart")){
+					//找到的赋给cookie
+					cookie=cookies[i];
+				}
+			}
+			String json=cookie.getValue();
+			Gson gson=new Gson();
+			Cart cart=gson.fromJson(json, Cart.class);
+			cart.getMap().remove(id);
+			//重新将购物车加入cookie中
+			String json1 = gson.toJson(cart);
+			cookie.setValue(json1);
+			resp.addCookie(cookie);	
+		}else{//用户已登录 清除缓存中购物车的指定购物项
+			//清除缓存中的用户购物车的购物项
+			Cart cart = (Cart) client.get("cart");
+			cart.getMap().remove(id);
+			//重新将购物车存入缓存中
+			client.set("cart", 1000, cart);
+		}	
 		try {
 			resp.sendRedirect("my-car.jsp");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		/*Cart cart = (Cart) req.getSession().getAttribute("cart");
+		System.out.println("方法进来的delCart:"+cart);
+		service.del(id, cart);*/
+		
+		
 
 	}
 

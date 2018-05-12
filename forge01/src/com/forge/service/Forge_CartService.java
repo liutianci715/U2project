@@ -15,4 +15,6 @@ public interface Forge_CartService extends BaseService<Forge_Cart> {
 
 	void delDbData();
 
+	void clear(int userId);
+
 }

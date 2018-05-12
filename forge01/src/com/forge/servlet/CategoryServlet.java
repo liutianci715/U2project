@@ -16,6 +16,7 @@ import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.bean.Forge_Users;
 import com.forge.bean.Forge_Users_Tracks;
+import com.forge.bean.UserTrack;
 import com.forge.service.Forge_Users_TracksService;
 import com.forge.service.ProductService;
 import com.forge.service.Product_CategoryService;
@@ -97,14 +98,26 @@ public class CategoryServlet extends HttpServlet {
 	//查询商品浏览记录
 	private void queryTrack(HttpServletRequest req, HttpServletResponse resp) {
 		//获取用户ID
-		String userId = req.getParameter("userId");
+		/*String userId = req.getParameter("userId");
 		List<Forge_Product> products = tservices.findAll(userId);
 		req.getSession().setAttribute("userTrack", products);
 		try {
 			resp.sendRedirect("my-track.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
+		}*/
+		
+		//Forge_UserTrack_Service  ts = new Forge_UserTrack_Service_Impl(); 
+		Forge_Users user = (Forge_Users) req.getSession().getAttribute("user");
+		List <UserTrack> tracks = tservices.queryTrack(user.getUserId());
+		req.getSession().setAttribute("userTrack", tracks);
+		try {
+			resp.sendRedirect("my-track.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		
 	}
 
 	private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
@@ -158,7 +171,6 @@ public class CategoryServlet extends HttpServlet {
 						//String productId = tracks.get(i).getId();
 						count=count+1;
 						
-						
 					}
 					
 		    	}
@@ -178,6 +190,7 @@ public class CategoryServlet extends HttpServlet {
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 		}
+
 	}
 
 	private void findByt3(HttpServletRequest req, HttpServletResponse resp) {

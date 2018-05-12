@@ -187,8 +187,8 @@
 			<div class="fl pc-shop-fl">
 				<input type="checkbox" placeholder="">
 				<label for="">全选</label>
-				<a href="buyServlet?method=clear">删除</a>
-				<a href="#">清楚失效商品</a>
+				<a href="buyServlet?method=clear">清除购物车</a>
+				<a href="#">清除失效商品</a>
 			</div>
 			<div class="fr pc-shop-fr">
 		

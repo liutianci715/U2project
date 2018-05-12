@@ -65,4 +65,9 @@ public class Forge_CartServiceImpl implements Forge_CartService {
 			dao.delDbData();
 	}
 
+	@Override
+	public void clear(int userId) {
+		dao.clear(userId);
+	}
+
 }

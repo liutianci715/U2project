@@ -242,9 +242,9 @@
 					<ul>
 						<c:forEach items="${sessionScope.userTrack}" var="b">
 							<li>
-								<div class="digit1"><a href="CategoryServlet?method=page&id=${b.id}"><img src="images/${b.fileName}" width="100%"></a></div>
-								<div class="digit2"><a href="CategoryServlet?method=page&id=${b.id}">${b.name}</a></div>
-								<div id="time" name="time" value="${b.id}"></div>
+								<div class="digit1"><a href="CategoryServlet?method=page&id=${b.product.id}"><img src="images/${b.product.fileName}" width="100%"></a></div>
+								<div class="digit2"><a href="CategoryServlet?method=page&id=${b.product.id}">${b.product.name}</a></div>
+								<div id="time" name="time">${b.viewTime}</div>
 							</li>
 						</c:forEach>
 					</ul>

@@ -98,4 +98,18 @@ public class Forge_CartDaoImpl extends jdbcUtil implements Forge_CartDao {
 		}
 	}
 
+	@Override
+	public void clear(int userId) {
+		String sql ="delete from forge_cart where userId=?";
+		Object []param = {userId};
+		try {
+			myExcuteUpdate(sql,param);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

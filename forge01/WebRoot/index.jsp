@@ -84,7 +84,7 @@
 			<c:if test="${sessionScope.user==null}">
 				<a href="login.jsp" target="_blank">请登录</a>
 			</c:if>			
-			 <a href="register.html" target="_blank"> 免费注册</a></div>
+			 <a href="login.jsp" target="_blank"> 免费注册</a></div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -242,7 +242,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>								
@@ -258,7 +258,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>								
@@ -274,7 +274,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>								
@@ -290,7 +290,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>								
@@ -306,7 +306,7 @@
 							<p>
 								<c:forEach items="${sessionScope.type3}" var="type33">
 									<c:if test="${type2.id==type33.parentId}">
-										<a href="">${type33.name}</a>
+										<a href="CategoryServlet?method=findByt3&id=${type33.id}">${type33.name}</a>
 									</c:if>
 										
 								</c:forEach>								

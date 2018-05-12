@@ -118,13 +118,15 @@ public class UsersServlet extends HttpServlet {
 				CartItem mitem = (CartItem) mentry.getValue();//获取缓存中的的购物项
 				fcService.addProduct(userId, mitem);
 			}
+		}else{
+			fcService.clear(Integer.valueOf(userId));
 		}
 		
 				//清除session中的用户
 				//req.getSession().removeAttribute("user");
 				req.getSession().invalidate();
 				
-				//清除缓存中的用户
+				//清除缓存中的用户购物车
 				client.delete("cart");
 				
 				/*Cart cart = new Cart();

@@ -121,7 +121,13 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+				   您好！<a href="my-user.jsp">${sessionScope.user.loginName}</a>，欢迎来云购物 
+				<c:if test="${sessionScope.user==null}">
+					<a href="login.jsp" target="_blank">请登录</a>
+				</c:if>	 
+				 <a href="login.jsp" target="_blank"> 免费注册</a>
+			 </div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -158,7 +164,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">

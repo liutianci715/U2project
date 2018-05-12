@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users_Tracks;
+import com.forge.bean.UserTrack;
 
 public interface Forge_Users_TracksService extends BaseService<Forge_Users_Tracks>{
 
@@ -15,5 +16,7 @@ public interface Forge_Users_TracksService extends BaseService<Forge_Users_Track
 
 	void update(Serializable userId, String productId);
 	String findTime(Serializable userId, Serializable productId);
+
+	List<UserTrack> queryTrack(int userId);
 
 }
